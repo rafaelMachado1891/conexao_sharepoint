@@ -31,11 +31,22 @@ headers = {
        "Accept": "application/json"
 }
 
-response = requests.get(url,headers=headers)
+all_items = []
 
-dados =(response.json())
+while acesso_site:
+    response = requests.get(acesso_site,headers=headers)
+    response.raise_for_status()
+    dados =(response.json())
+    all_items.extend(dados.get("value",[]))
+    acesso_site = dados.get("@odata.nextLink")
 
-df = pd.DataFrame([item["fields"] for item in dados["value"]])
+print(f"✅ Total de itens obtidos: {len(all_items)}")
+
+df = pd.DataFrame([item["fields"] for item in all_items])
+
+print(df.info)
+
+print(df.tail())
 
 
-print(df.head())
+
