@@ -44,9 +44,11 @@ print(f"✅ Total de itens obtidos: {len(all_items)}")
 
 df = pd.DataFrame([item["fields"] for item in all_items])
 
-print(df.info)
+if __name__ == "__main__":
 
-print(df.tail())
+    print(df)
+
+
 
 
 
