@@ -33,7 +33,7 @@ headers = {
 
 all_items = []
 
-while acesso_site:
+while acesso_site and len(all_items) <= 100:
     response = requests.get(acesso_site,headers=headers)
     response.raise_for_status()
     dados =(response.json())
