@@ -31,5 +31,10 @@ df.groupby(by=["nome"],as_index=False).agg({"gastos": ["sum","min","max"],
                                             "receita":["mean"]})
 
 # %%
-df.groupby(by=["nome"],as_index=False).agg({"gastos": ["sum","min","max"],
+summary = df.groupby(by=["nome"],as_index=False).agg({"gastos": ["sum","min","max"],
                                             })
+summary
+# %%
+summary.columns = ['nome','soma_gastos','minimo_gastos','max_pontos'] # definindo o  nome das colunas e modificando o tipo de data frame para não multi index
+# %%
+summary
